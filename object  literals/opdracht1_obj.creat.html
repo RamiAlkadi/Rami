@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>opdracht1</title>
+    <style>
+        #can{
+            height: 400px;
+            width: 800px;
+            border: red 2px solid;
+        }
+    </style>
+</head>
+<body>
+
+<canvas id="can"></canvas>
+
+<script>
+
+    const v = document.getElementById("can");
+    let vtx = v.getContext("2d");
+    vtx.fillStyle = "blue";
+    // vtx.beginPath();
+    // vtx.arc(100,75,50,0,2*Math.PI);
+    // vtx.fill();
+
+    const p ={
+        setCricle : function () {
+            vtx.beginPath();
+            vtx.arc(this.x,this.y,this.diameter,0,2*Math.PI);
+            vtx.fill();
+        }
+    };
+
+    function komeet(diameter,snelheid,x,y,vector)
+        {
+      const kom = Object.create(p);
+      kom.diameter = diameter;
+      kom.snelheid = snelheid;
+      kom.x = x;
+      kom.y = y;
+      kom.vector = vector;
+      return kom;
+    }
+
+    const kom1 = komeet('20','40','50','30',['10','20']);
+    const kom2 = komeet ('30','220','120','100',['10','20']);
+    const kom3 = komeet ('15','220','220','70',['10','20']);
+
+    kom1.setCricle();
+    kom2.setCricle();
+    kom3.setCricle();
+
+    console.log(kom1,kom2);
+
+
+    // {
+    //     diameter: 100,
+    //         snelheid: 50,
+    //     x: 10,
+    //     y: 20,
+    //     vector: [10,20]
+    // }
+</script>
+</body>
+</html>

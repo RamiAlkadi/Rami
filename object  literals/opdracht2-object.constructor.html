@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>odpracht 2</title>
+    <style>
+        #can{
+            height: 400px;
+            width: 800px;
+            border: red 2px solid;
+        }
+    </style>
+</head>
+<body>
+<canvas id="can"></canvas>
+<script>
+    const v = document.getElementById("can");
+    let vtx = v.getContext("2d");
+    vtx.fillStyle = "blue";
+
+    function Komeet(x,y,d,color)
+    {
+        this.x = x;
+        this.y = y;
+        this.d = d;
+        this.color = color;
+    }
+
+
+    Komeet.prototype.update = function () {
+
+        this.x++;
+        this.y++;
+
+console.log(this.x);
+        vtx.beginPath();
+        vtx.fillStyle = this.color;
+        vtx.arc(this.x,this.y,this.d,0,2*Math.PI);
+        vtx.fill();
+    };
+
+    const kom1 = new Komeet("50",'105','12',"red");
+    const kom2 = new Komeet('50','25','29',"blue");
+    const kom3 = new Komeet('100','40','15',"green");
+
+    // console.log(komeet1,komeet2,komeet3);
+
+    function draw() {
+        kom1.update();
+        kom2.update();
+        kom3.update();
+        requestAnimationFrame(draw);
+    }
+    requestAnimationFrame(draw);
+
+</script>
+</body>
+</html>

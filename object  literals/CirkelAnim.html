@@ -1,0 +1,72 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>Title</title>
+</head>
+<body>
+<canvas id="canvas" width="500" height="400" style="border:1px solid #000000;"></canvas>
+<script>
+
+    // get the theory behind:
+    // http://nepraunig.com/wp/?p=117
+
+    // grab the canvas and context
+    var canvas = document.getElementById('canvas');
+    var ctx = canvas.getContext('2d');
+
+    // inital coordinates of the black square
+    var x = 0;
+    var y = 0;
+
+    // speed of the movement
+    // initially 1, means it increases the x value
+    // if set to -1 the square moves into the other direction
+    var speed = 1;
+
+    // width and height of the square
+    var width = 10;
+    var height = 10;
+
+    // the center of the circle
+    var circleCenterX = 250;
+    var circleCenterY = 200;
+
+    // the radius and angle of the circle, we start at angle 0
+    var radius = 100;
+    var angle = 0;
+
+    function animate() {
+        // clear
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        // update and draw
+
+        // Math.PI/180 is for transforming angle into radiant
+        // Math.cos(angle) is the ratio of adjacent to hypothenuse
+        // Math.sin(angle) is the ratio of opposite to hypothenuse
+        // the hypothenuse is the radius
+        var newX  = radius * Math.cos(angle * (Math.PI/180));
+        var newY = radius * Math.sin(angle * (Math.PI/180));
+
+        // to place the square correctly we must add the calculated
+        // new x and y values to the circle center
+        x = newX + circleCenterX;
+        y = newY + circleCenterY;
+
+        ctx.fillRect(x, y, width, height);
+
+        // increase the angle so that it moves in circular way
+        // it is not necessary to limit/reset the angle to 360°
+        // because sinus and cosinus work for angles bigger than 360°
+        // sin(0) = sin(180) = sin(360) = sin(540) = sin(720) ...
+        angle += speed;
+
+        setTimeout(animate, 33);
+    }
+    // call the animate function manually for the first time
+    animate();
+
+</script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>OT</title>
+</head>
+<body>
+<script>
+
+    const piet = {
+        leeftijd: 16,
+        geboortedatum: '1-28-2000', // m-d-y
+        nummer : "0640718149",
+        naam : "Rami"
+    };
+
+piet.setleeftijd = function (geb_datum) {
+//bereken de leeftijd en pas leeftijd aan
+    this.geboortedatum = geb_datum;
+    const birthday = new Date(this.geboortedatum);
+    const agedif = Date.now() - birthday.getTime();
+    const agedate = new Date(agedif); // miliseconds from epoch
+    this.leeftijd = Math.abs(agedate.getUTCFullYear() - 1970);
+
+};
+
+piet.show = function (){
+    return this.naam + "," + this.nummer + "," +  this.leeftijd  ;
+};
+
+piet.setleeftijd('4-28-1998')//m-d-y
+// piet.gegevens('Rami',"0640718149",a);
+
+console.log(piet.show());
+
+</script>
+</body>
+</html>
