@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>library</title>
+    <style>
+        #click{
+            font-size: 100px;
+        }
+    </style>
+</head>
+<body>
+
+<p style="font-size:120px">Eerste console openen en dan pas klik</p>
+
+<div id="click">Click me</div>
+<script type="module">
+
+
+
+    document.getElementById("click").addEventListener('click', function() {
+        document.getElementById("click").innerHTML = "YOU CLICKED ME!";
+        console.log(ar());
+    });
+
+
+    import {ar} from "./js/methods.mjs";
+
+
+
+</script>
+</body>
+</html>
